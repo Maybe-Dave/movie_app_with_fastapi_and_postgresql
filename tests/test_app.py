@@ -329,33 +329,33 @@ def test_get_rating(client, setup_database, username1, password1,username2,passw
 # # # # comments Endpoint test
 # # # # ========================
 
-# @pytest.mark.parametrize("username1, password1, username2, password2", [("testuser", "testpassword","testuser2","testpassword2")])
-# def test_get_comments(client, setup_database, username1, password1,username2,password2):
+@pytest.mark.parametrize("username1, password1, username2, password2", [("testuser", "testpassword","testuser2","testpassword2")])
+def test_get_comments(client, setup_database, username1, password1,username2,password2):
 
-#     # Get comments for a movie without comments
-#     response = client.get("/comments/2")
-#     assert response.status_code == 404
-#     data = response.json()
+    # Get comments for a movie without comments
+    response = client.get("/comments/2")
+    assert response.status_code == 404
+    data = response.json()
     
-#     # login with user 1
-#     response = client.post("/login", data={"username": username1, "password": password1})
-#     assert response.status_code == 200
-#     token = response.json()["access_token"]
+    # login with user 1
+    response = client.post("/login", data={"username": username1, "password": password1})
+    assert response.status_code == 200
+    token = response.json()["access_token"]
 
-#     # Add comments to a movie
-#     response = client.post(
-#         "/comments/",
-#         json={"movie_id": 2, "content": "Test Comment"},
-#         headers={"Authorization": f"Bearer {token}"}
-#     )
-#     assert response.status_code == 200
-#     data = response.json()
-#     assert data["movie_id"] == 2
-#     assert data["content"] == "Test Comment"
+    # Add comments to a movie
+    response = client.post(
+        "/comments/",
+        json={"movie_id": 2, "content": "Test Comment"},
+        headers={"Authorization": f"Bearer {token}"}
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert data["movie_id"] == 2
+    assert data["content"] == "Test Comment"
 
-#     # Get comments for a movie with comments
-#     response = client.get("/comments/2")
-#     assert response.status_code == 200
-#     data = response.json()
-#     assert len(data) == 1
-#     assert data[0]["content"] == "Test Comment"
+    # Get comments for a movie with comments
+    response = client.get("/comments/2")
+    assert response.status_code == 200
+    data = response.json()
+    assert len(data) == 1
+    assert data[0]["content"] == "Test Comment"
