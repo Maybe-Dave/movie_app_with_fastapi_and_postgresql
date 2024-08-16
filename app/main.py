@@ -44,4 +44,5 @@ app.include_router(router=movies_router,prefix="/movies",tags=["MOVIE"])
     
 @app.get("/")
 async def root():
+    logger.info("Root endpoint accessed")
     return {"message": "Welcome to the Movie Rating App"}

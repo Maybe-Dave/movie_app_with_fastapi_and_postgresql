@@ -171,3 +171,4 @@ out/
 
 # Git metadata
 .git/
+test.db

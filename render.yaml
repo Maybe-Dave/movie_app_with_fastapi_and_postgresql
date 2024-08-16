@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: my-fastapi-app
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app.main:app"
+    cronJobs:
+      - name: "Ping FastAPI App"
+        command: "./ping_app.sh"
+        schedule: "*/5 * * * *"
